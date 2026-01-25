@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Study - [Confidencial] Next-Gen Service API</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono&display=swap');
+
+        :root {
+            --primary: #6366f1;
+            --secondary: #a855f7;
+            --bg-main: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --accent-glow: rgba(99, 102, 241, 0.1);
+        }
+
+        @page {
+            size: A4 portrait;
+            margin: 15mm;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            background: #ffe4e6;
+            color: #e11d48;
+            border-radius: 99px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .summary-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .summary-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: #e11d48;
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .tech-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            padding: 4px 10px;
+            background: #f1f5f9;
+            border-radius: 6px;
+            color: var(--text-muted);
+        }
+
+        .content-grid {
+            display: grid;
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        .status-badge {
+            background: #dcfce7;
+            color: #166534;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        footer {
+            margin-top: 40px;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 20px;
+        }
+
+        .back-link {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .container {
+                max-width: 100%;
+            }
+
+            .card,
+            .summary-card {
+                box-shadow: none;
+                border: 1px solid #eee;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <header>
+            <span class="badge">Proyecto Confidencial</span>
+            <h1>Next-Gen Service API</h1>
+            <p style="color: var(--text-muted);">Arquitectura de Backend Moderna para el Ecosistema de Órdenes de
+                Servicio</p>
+        </header>
+
+        <main class="content-grid">
+            <section class="summary-card">
+                <span class="status-badge">Estado: En Desarrollo</span>
+                <h2>El Desafío</h2>
+                <p>
+                    El sistema heredado dependía de un backend obsoleto desarrollado en Delphi, lo que dificultaba la
+                    integración con nuevas tecnologías móviles, limitaba la escalabilidad y hacía que el mantenimiento
+                    fuera extremadamente lento. El reto es crear una base sólida de microservicios que soporte la
+                    próxima generación de productos de la empresa.
+                </p>
+                <div class="tech-stack">
+                    <span class="tech-tag">SpringBoot</span>
+                    <span class="tech-tag">Kotlin</span>
+                    <span class="tech-tag">PostgreSQL</span>
+                    <span class="tech-tag">Docker</span>
+                    <span class="tech-tag">MVC Architecture</span>
+                </div>
+            </section>
+
+            <section class="card">
+                <h2>La Solución Técnica</h2>
+                <ul style="list-style-type: none;">
+                    <li style="margin-bottom: 15px;">
+                        <strong>• Migración de Paradigma:</strong> Implementación de una API RESTful utilizando
+                        <b>SpringBoot con Kotlin</b>, aplicando patrones <b>MVC</b> y principios <b>SOLID</b> para
+                        garantizar una transición robusta de lo heredado a lo moderno.
+                    </li>
+                    <li style="margin-bottom: 15px;">
+                        <strong>• Infraestructura Contenedorizada:</strong> Uso de <b>Docker</b> para estandarizar los
+                        entornos de desarrollo y producción, facilitando despliegues y escalabilidad horizontal.
+                    </li>
+                    <li style="margin-bottom: 15px;">
+                        <strong>• Integración entre Sistemas:</strong> Desarrollo de capas de integración para una
+                        comunicación estable entre la nueva API y aplicaciones internas, con planes futuros para la
+                        adopción de **gRPC** para comunicaciones de alto rendimiento.
+                    </li>
+                </ul>
+            </section>
+
+            <section class="card">
+                <h2>Impacto Previsto</h2>
+                <p style="margin-bottom: 15px;">Al ser un proyecto en curso, los resultados directos en producción aún
+                    no se han medido, pero los pilares de éxito definidos son:</p>
+                <ul style="padding-left: 20px;">
+                    <li style="margin-bottom: 8px;"><b>Estabilidad Superior:</b> Eliminación de interrupciones e
+                        inestabilidades frecuentes del backend heredado.</li>
+                    <li style="margin-bottom: 8px;"><b>Agilidad en el Desarrollo:</b> Un entorno moderno que permite
+                        lanzamientos de funcionalidades en semanas, no meses.</li>
+                    <li style="margin-bottom: 8px;"><b>Seguridad de Datos:</b> Implementación de capas de autenticación
+                        y auditoría inexistentes en el sistema anterior.</li>
+                </ul>
+            </section>
+        </main>
+
+        <footer>
+            <a href="index.html" class="back-link">← Volver al Portfolio</a>
+        </footer>
+    </div>
+
+</body>
+
+</html>
