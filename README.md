@@ -1,35 +1,39 @@
 # viniciusquatrin.github.io
 
-Portfolio de Vinícius Quatrin — site Next.js (App Router) com export estático.
+Portfolio de Vinícius Quatrin — Next.js (App Router) com export estático.
 
 - **Live:** https://viniciusquatrin.github.io
-- **Source:** branch `main` (projeto Next.js)
-- **Published site:** branch `gh-pages` (conteúdo de `out/` após `npm run build`)
+- **Source:** `src/`, `package.json`, `next.config.ts`, etc. na branch `main`
+- **Site publicado:** arquivos estáticos na raiz de `main` (`index.html`, `_next/`, `cases/`, `sobre/`) gerados por `npm run build` (`out/`)
 
-## Desenvolvimento local
+## Desenvolvimento
 
 ```bash
 npm ci
 npm run dev
 ```
 
-## Publicar atualização do site
+## Atualizar o site publicado
 
 ```bash
 npm ci
 npm run build
-# copie o conteúdo de out/ para a branch gh-pages (com .nojekyll na raiz)
+# copie o conteúdo de out/ para a raiz do repositório (mantenha .nojekyll)
+git add -A && git commit -m "Update static export" && git push
 ```
 
-## Deploy via GitHub Actions (opcional)
+## GitHub Actions (ainda não no remoto)
 
-O token OAuth atual não tem scope `workflow`, então o arquivo
-`.github/workflows/pages.yml` ainda não está no remoto. Para ativar:
+O token OAuth desta máquina não tem scope `workflow`, então `.github/workflows/pages.yml`
+não pode ser enviado via `git push`. Para ativar deploy automático:
 
-1. Autorize o GitHub CLI/app com scope `workflow`, **ou**
-2. Em Settings → Pages, escolha Source: **GitHub Actions**, e adicione o workflow via UI.
+1. Reautorize `gh` com scope `workflow` (`gh auth refresh -s workflow`), **ou**
+2. Em **Settings → Pages → Build and deployment → Source**, escolha **GitHub Actions**
+   e crie o workflow pela UI (template ou cole o YAML abaixo).
 
-Enquanto isso, Pages está configurado para servir a branch `gh-pages`.
+Workflow sugerido: `.github/workflows/pages.yml` (npm ci → npm run build → upload `out/` → deploy-pages).
+
+Enquanto isso, Pages serve a raiz de `main` (legado).
 
 ## Stack
 
