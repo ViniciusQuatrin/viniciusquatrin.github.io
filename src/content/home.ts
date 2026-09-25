@@ -34,7 +34,6 @@ export const home = {
     body: "Trabalho em app que já está na rua: legado que precisa viver e código novo no mesmo ciclo. POS, integração e modernização sem drama — o que o time e o prazo pedem.",
   },
   cta: {
-    title: "Vamos falar",
     primaryLinkedIn: "Falar no LinkedIn",
     primaryEmail: "Enviar e-mail",
     secondary: "Ver cases",

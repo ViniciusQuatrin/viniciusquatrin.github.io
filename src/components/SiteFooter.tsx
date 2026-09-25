@@ -1,5 +1,9 @@
-import Link from "next/link";
 import { site } from "@/content/site";
+
+function withTrailingSlash(href: string) {
+  if (href === "/") return href;
+  return href.endsWith("/") ? href : `${href}/`;
+}
 
 export function SiteFooter() {
   return (
@@ -10,7 +14,7 @@ export function SiteFooter() {
           <ul className="site-footer__list">
             {site.nav.map((item) => (
               <li key={item.href}>
-                <Link href={item.href}>{item.label}</Link>
+                <a href={withTrailingSlash(item.href)}>{item.label}</a>
               </li>
             ))}
             <li>

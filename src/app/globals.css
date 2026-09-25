@@ -169,13 +169,8 @@ a {
   font-size: 0.95rem;
 }
 
-.site-header__link:hover,
-.site-header__link--active {
+.site-header__link:hover {
   color: var(--fg);
-}
-
-.site-header__link--active {
-  font-weight: 600;
 }
 
 .site-header__cta {
@@ -256,20 +251,20 @@ a {
   padding-block: 2.5rem 3rem;
 }
 
-.hero__role {
-  margin: 0 0 0.75rem;
-  color: var(--fg-muted);
-  font-size: 0.95rem;
-  font-weight: 550;
-  letter-spacing: 0.02em;
-}
-
 .hero__name {
-  margin: 0 0 1rem;
+  margin: 0 0 0.75rem;
   font-size: clamp(2.25rem, 7vw, 3.5rem);
   font-weight: 700;
   letter-spacing: -0.035em;
   line-height: 1.1;
+}
+
+.hero__role {
+  margin: 0 0 1rem;
+  color: var(--fg-muted);
+  font-size: 0.95rem;
+  font-weight: 550;
+  letter-spacing: 0.02em;
 }
 
 .hero__promise {

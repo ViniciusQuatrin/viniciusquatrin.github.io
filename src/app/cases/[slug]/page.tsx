@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CtaGroup } from "@/components/CtaGroup";
 import { getCase, getCaseSlugs } from "@/content/cases";
@@ -7,6 +6,11 @@ import { getCase, getCaseSlugs } from "@/content/cases";
 type PageProps = {
   params: Promise<{ slug: string }>;
 };
+
+function withTrailingSlash(href: string) {
+  if (href === "/") return href;
+  return href.endsWith("/") ? href : `${href}/`;
+}
 
 export function generateStaticParams() {
   return getCaseSlugs().map((slug) => ({ slug }));
@@ -58,29 +62,26 @@ export default async function CasePage({ params }: PageProps) {
 
       <nav className="case-nav" aria-label="Navegação entre cases">
         {item.prev ? (
-          <Link href={item.prev.href}>
+          <a href={withTrailingSlash(item.prev.href)}>
             <span aria-hidden="true">← </span>
             {item.prev.label}
-          </Link>
+          </a>
         ) : (
           <span />
         )}
         {item.next ? (
-          <Link href={item.next.href}>
+          <a href={withTrailingSlash(item.next.href)}>
             {item.next.label === "Voltar aos cases"
               ? item.next.label
               : `Próximo: ${item.next.label}`}
             {item.next.label !== "Voltar aos cases" ? (
               <span aria-hidden="true"> →</span>
             ) : null}
-          </Link>
+          </a>
         ) : null}
       </nav>
 
-      <section aria-labelledby="case-cta-title">
-        <h2 id="case-cta-title" className="section__title">
-          Contato
-        </h2>
+      <section aria-label="Contato">
         <CtaGroup
           linkedInLabel="LinkedIn"
           emailLabel="E-mail"

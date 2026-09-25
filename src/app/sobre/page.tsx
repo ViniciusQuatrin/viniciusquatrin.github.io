@@ -36,10 +36,7 @@ export default function SobrePage() {
           <p className="section__lead">{about.forWhom.body}</p>
         </section>
 
-        <section aria-labelledby="sobre-cta-title">
-          <h2 id="sobre-cta-title" className="section__title">
-            {about.cta.title}
-          </h2>
+        <section aria-label="Contato">
           <CtaGroup
             linkedInLabel={about.cta.primaryLinkedIn}
             emailLabel={about.cta.primaryEmail}

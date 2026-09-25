@@ -22,6 +22,8 @@ npm run build
 git add -A && git commit -m "Update static export" && git push
 ```
 
+`npm run build` roda um pós-processamento (`scripts/strip-client-js.mjs`) que remove o JS de runtime do Next do export — o site é HTML/CSS estático com âncoras plain (sem hidratação).
+
 ## GitHub Actions (ainda não no remoto)
 
 O token OAuth desta máquina não tem scope `workflow`, então `.github/workflows/pages.yml`

@@ -12,10 +12,10 @@ export default function HomePage() {
   return (
     <>
       <section className="container hero" aria-labelledby="hero-name">
-        <p className="hero__role">{home.hero.role}</p>
         <h1 id="hero-name" className="hero__name">
           {home.hero.name}
         </h1>
+        <p className="hero__role">{home.hero.role}</p>
         <p className="hero__promise">{home.hero.promise}</p>
       </section>
 
@@ -46,11 +46,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="section" aria-labelledby="cta-title">
+      <section className="section" aria-label="Contato">
         <div className="container">
-          <h2 id="cta-title" className="section__title">
-            {home.cta.title}
-          </h2>
           <CtaGroup
             linkedInLabel={home.cta.primaryLinkedIn}
             emailLabel={home.cta.primaryEmail}

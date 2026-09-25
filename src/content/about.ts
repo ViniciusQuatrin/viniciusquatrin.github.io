@@ -17,7 +17,6 @@ export const about = {
     body: "Para tech lead e hiring manager Android que precisam, em poucos minutos, saber se o perfil aguenta time e código sujo em produção.",
   },
   cta: {
-    title: "Contato",
     primaryLinkedIn: "LinkedIn",
     primaryEmail: "E-mail",
     secondary: "Ver cases",

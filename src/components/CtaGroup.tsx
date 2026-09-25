@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { site } from "@/content/site";
 
 type CtaGroupProps = {
@@ -8,6 +7,12 @@ type CtaGroupProps = {
   secondaryLabel?: string;
   compact?: boolean;
 };
+
+function withTrailingSlash(href: string) {
+  if (href.startsWith("http") || href.startsWith("mailto:")) return href;
+  if (href === "/") return href;
+  return href.endsWith("/") ? href : `${href}/`;
+}
 
 export function CtaGroup({
   linkedInLabel = site.linkedIn.label,
@@ -32,9 +37,12 @@ export function CtaGroup({
         {emailLabel}
       </a>
       {secondaryHref && secondaryLabel ? (
-        <Link href={secondaryHref} className="btn btn--secondary">
+        <a
+          href={withTrailingSlash(secondaryHref)}
+          className="btn btn--secondary"
+        >
           {secondaryLabel}
-        </Link>
+        </a>
       ) : null}
     </div>
   );
