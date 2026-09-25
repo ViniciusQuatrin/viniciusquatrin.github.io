@@ -1,0 +1,41 @@
+import Link from "next/link";
+import { site } from "@/content/site";
+
+type CtaGroupProps = {
+  linkedInLabel?: string;
+  emailLabel?: string;
+  secondaryHref?: string;
+  secondaryLabel?: string;
+  compact?: boolean;
+};
+
+export function CtaGroup({
+  linkedInLabel = site.linkedIn.label,
+  emailLabel = site.email.label,
+  secondaryHref,
+  secondaryLabel,
+  compact = false,
+}: CtaGroupProps) {
+  return (
+    <div
+      className={`cta-group ${compact ? "cta-group--compact" : ""}`.trim()}
+    >
+      <a
+        href={site.linkedIn.href}
+        className="btn btn--primary"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {linkedInLabel}
+      </a>
+      <a href={site.email.href} className="btn btn--primary">
+        {emailLabel}
+      </a>
+      {secondaryHref && secondaryLabel ? (
+        <Link href={secondaryHref} className="btn btn--secondary">
+          {secondaryLabel}
+        </Link>
+      ) : null}
+    </div>
+  );
+}
