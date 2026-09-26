@@ -13,8 +13,11 @@
   --radius: 10px;
   --text-max: 42rem; /* ~672px */
   --content-max: 68.75rem; /* ~1100px */
-  --space-section: clamp(3rem, 6vw, 5rem); /* 48–80 */
-  --space-section-lg: clamp(4rem, 7vw, 6rem); /* 64–96 */
+  --space-section: clamp(1.5rem, 4vw, 2.5rem); /* 24–40 between blocks (mobile) */
+  --space-section-lg: clamp(3rem, 5vw, 4rem); /* 48–64 between blocks (desktop) */
+  --space-hero-after: clamp(1.5rem, 3vw, 2rem); /* 24–32 below hero → next block */
+  --space-hero-after-lg: 3rem; /* ~48 below hero desktop */
+  --space-footer: clamp(1.5rem, 3vw, 2rem); /* 24–32 footer py mobile */
   --touch: 2.75rem; /* 44px */
 }
 
@@ -93,12 +96,25 @@ a {
 }
 
 .section {
-  padding-block: var(--space-section);
+  /* One-sided: avoid doubled gaps when sections stack */
+  padding-top: 0;
+  padding-bottom: var(--space-section);
 }
 
 @media (min-width: 768px) {
   .section {
-    padding-block: var(--space-section-lg);
+    padding-bottom: var(--space-section-lg);
+  }
+}
+
+/* Page shells (container + section) need top inset once */
+.container.section {
+  padding-top: var(--space-section);
+}
+
+@media (min-width: 768px) {
+  .container.section {
+    padding-top: var(--space-section-lg);
   }
 }
 
@@ -246,9 +262,16 @@ a {
 .hero {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  min-height: calc(100svh - 3.5rem);
-  padding-block: 2.5rem 3rem;
+  /* Height by content — no min-h-screen / 100vh / 100svh */
+  padding-block: 1.75rem 0;
+  margin-bottom: var(--space-hero-after);
+}
+
+@media (min-width: 768px) {
+  .hero {
+    padding-block: 2.5rem 0;
+    margin-bottom: var(--space-hero-after-lg);
+  }
 }
 
 .hero__name {
@@ -279,7 +302,7 @@ a {
 .proof-stack {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: clamp(1rem, 2.5vw, 1.5rem); /* 16–24 between proof cards */
   max-width: var(--text-max);
 }
 
@@ -425,7 +448,7 @@ a {
 .site-footer {
   border-top: 1px solid var(--border);
   background: color-mix(in srgb, var(--bg) 70%, #e8e6e0);
-  padding-block: 2.5rem;
+  padding-block: var(--space-footer);
   margin-top: auto;
 }
 
@@ -486,11 +509,11 @@ a {
 }
 
 .stack-sections > * + * {
-  margin-top: 2rem;
+  margin-top: var(--space-section);
 }
 
 @media (min-width: 768px) {
   .stack-sections > * + * {
-    margin-top: 2.5rem;
+    margin-top: var(--space-section-lg);
   }
 }

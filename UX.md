@@ -16,7 +16,7 @@ Sem /contato. Contato = CTA global (LinkedIn + e-mail) no header e rodapé.
 3. Como entrega
 4. CTA — primário LinkedIn/e-mail; secundário /cases
 5. Footer
-Hero em 1 viewport; CTA após provas ou sticky leve.
+Hero por conteúdo (sem 100vh); espaço até Provas 24–32px mobile / até ~48px desktop. CTA em fluxo após provas/como entrega — sem sticky que crie buracos.
 
 ## /sobre
 Quem é → Como trabalha → Pra quem → CTA. Sem timeline longa.
@@ -35,5 +35,5 @@ Um primário por viewport.
 ## Mobile-first
 Base ~360px; desktop 1→2–3 col. Toque ≥44px; foco visível; headings em ordem.
 Texto max-width ~640–720px; grid cases ~1100px.
-Seções: 48–80px mobile / 64–96px desktop.
+Seções (ritmo entre blocos): 24–40px mobile / 48–64px desktop — gap ou padding de um lado só (evitar py simétrico que dobra o vão). Provas: stack vertical, gap 16–24px entre cards. Footer py 24–32px mobile.
 Tom: limpo, sênior, sem marketing flashy. Contraste AA.
