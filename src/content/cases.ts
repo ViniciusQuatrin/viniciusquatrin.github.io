@@ -1,4 +1,8 @@
-export type CaseSlug = "ecofoods" | "ecoprontaentrega" | "ecoos-mobile";
+export type CaseSlug =
+  | "ecofoods"
+  | "ecoprontaentrega"
+  | "ecoos-mobile"
+  | "foco";
 
 export type CaseStudy = {
   slug: CaseSlug;
@@ -9,8 +13,13 @@ export type CaseStudy = {
   role: string;
   problem: string;
   changed: string;
+  /** Section heading for `changed`; defaults to "O que mudou". */
+  changedHeading?: string;
   stack: string;
   metaDescription: string;
+  /** Live product URL shown as "Abrir app" / case CTA. */
+  externalUrl?: string;
+  externalLabel?: string;
   prev: { href: string; label: string } | null;
   next: { href: string; label: string } | null;
 };
@@ -78,6 +87,27 @@ export const cases: CaseStudy[] = [
     metaDescription:
       "EcoOS Mobile — APIs externas e lazy loading de documentos.",
     prev: { href: "/cases/ecoprontaentrega", label: "EcoProntaEntrega" },
+    next: { href: "/cases/foco", label: "FOCO" },
+  },
+  {
+    slug: "foco",
+    title: "FOCO",
+    eyebrow: "produto web de foco",
+    listType: "produto web · guest-first",
+    listResult:
+      "Timer de foco configurável em segundos (Next.js App Router), com tema, som/notificação e histórico local sem conta obrigatória.",
+    role: "Side project web (Next.js) — timer Pomodoro configurável, guest primeiro.",
+    problem:
+      "Precisava de um timer de foco que abrisse e funcionasse na hora, com durações em segundos e presença visual forte — sem forçar conta pra usar.",
+    changed:
+      "App web com modos foco / pausa curta / pausa longa, play/pause/reset, nome de sessão, tema claro/escuro, som e notificação ao fim do ciclo, histórico neste aparelho. Login opcional pra quem quiser guardar além do guest. Sem sync, ads nem app nativo nesta versão.",
+    changedHeading: "O que entregou (v1)",
+    stack: "Next.js (App Router) · TypeScript · deploy Cloudflare Pages",
+    metaDescription:
+      "FOCO — produto web de foco guest-first: timer configurável em segundos, tema, som/notificação e histórico local.",
+    externalUrl: "https://foco-bzo.pages.dev",
+    externalLabel: "Abrir FOCO",
+    prev: { href: "/cases/ecoos-mobile", label: "EcoOS Mobile" },
     next: { href: "/cases", label: "Voltar aos cases" },
   },
 ];

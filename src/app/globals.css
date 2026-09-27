@@ -353,6 +353,21 @@ a {
   text-decoration: underline;
 }
 
+.case-card__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  align-items: center;
+}
+
+.case-card__link--external {
+  color: var(--fg-muted);
+}
+
+.case-card__link--external:hover {
+  color: var(--accent);
+}
+
 .case-grid {
   display: grid;
   gap: 1rem;

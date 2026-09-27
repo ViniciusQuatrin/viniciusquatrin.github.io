@@ -1,3 +1,3 @@
-:HL["/_next/static/chunks/2lsle7drp7fwa.css","style"]
+:HL["/_next/static/chunks/38sus0p9y501k.css","style"]
 :HL["/_next/static/media/47df9ba1c7236d3b-s.p.137759vg1sbmi.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
-0:{"tree":{"name":"","param":null,"prefetchHints":4176,"slots":{"children":{"name":"cases","param":null,"prefetchHints":4192,"slots":{"children":{"name":"slug","param":{"type":"d","key":"ecofoods","siblings":[]},"prefetchHints":4192,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":4256,"slots":null}}}}}}},"staleTime":300,"buildId":"ZSK8XonOfKWJhe6zPFj5s"}
+0:{"tree":{"name":"","param":null,"prefetchHints":4176,"slots":{"children":{"name":"cases","param":null,"prefetchHints":4192,"slots":{"children":{"name":"slug","param":{"type":"d","key":"ecofoods","siblings":[]},"prefetchHints":4192,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":4256,"slots":null}}}}}}},"staleTime":300,"buildId":"ePn8h_MVJXEBD4S1tIU5_"}
