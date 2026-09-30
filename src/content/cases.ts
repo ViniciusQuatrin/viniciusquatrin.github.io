@@ -95,16 +95,16 @@ export const cases: CaseStudy[] = [
     eyebrow: "produto web de foco",
     listType: "produto web · guest-first",
     listResult:
-      "Timer de foco configurável em segundos (Next.js App Router), com tema, som/notificação e histórico local sem conta obrigatória.",
+      "Timer configurável (s/min/h), visual cyberpunk, Spotify opcional e histórico local sem conta obrigatória.",
     role: "Side project web (Next.js) — timer Pomodoro configurável, guest primeiro.",
     problem:
-      "Precisava de um timer de foco que abrisse e funcionasse na hora, com durações em segundos e presença visual forte — sem forçar conta pra usar.",
+      "Precisava de um timer de foco que abrisse e funcionasse na hora, com durações flexíveis e presença visual forte — sem forçar conta pra usar.",
     changed:
-      "App web com modos foco / pausa curta / pausa longa, play/pause/reset, nome de sessão, tema claro/escuro, som e notificação ao fim do ciclo, histórico neste aparelho. Login opcional pra quem quiser guardar além do guest. Sem sync, ads nem app nativo nesta versão.",
-    changedHeading: "O que entregou (v1)",
-    stack: "Next.js (App Router) · TypeScript · deploy Cloudflare Pages",
+      "App web com modos foco / pausa curta / pausa longa, play/pause/reset, nome de sessão, tema claro/escuro (dark default), som e notificação ao fim do ciclo, histórico neste aparelho. Na v2: unidades s/min/h, skin cyberpunk (néon/HUD/glitch; glitch desliga com reduced-motion) e Spotify opcional com pausa da música ao fim do foco. Login opcional. Sem sync, ads nem app nativo.",
+    changedHeading: "O que entregou",
+    stack: "Next.js (App Router) · TypeScript · Spotify OAuth · Cloudflare Pages",
     metaDescription:
-      "FOCO — produto web de foco guest-first: timer configurável em segundos, tema, som/notificação e histórico local.",
+      "FOCO — timer de foco web guest-first, com unidades s/min/h, visual cyberpunk e Spotify opcional.",
     externalUrl: "https://foco-bzo.pages.dev",
     externalLabel: "Abrir FOCO",
     prev: { href: "/cases/ecoos-mobile", label: "EcoOS Mobile" },
