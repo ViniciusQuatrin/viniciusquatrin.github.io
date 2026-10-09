@@ -835,3 +835,37 @@ main h2 {
     background-image: url("/fx/globe.svg");
   }
 }
+
+/* External case card variant (e.g. xv → GitHub) */
+.ext-card__badge {
+  display: inline-block;
+  padding: 0.1rem 0.55rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--fg);
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+}
+
+.ext-card__stack {
+  margin: 0 0 0.85rem;
+  color: var(--fg-muted);
+  font-size: 0.9rem;
+}
+
+.ext-card__link {
+  gap: 0.4rem;
+}
+
+.ext-card__icon {
+  flex: none;
+}
+
+.case-card__result code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.9em;
+  padding: 0.05rem 0.3rem;
+  border-radius: 4px;
+  background: rgba(34, 211, 238, 0.1);
+  color: var(--fg);
+}

@@ -121,3 +121,37 @@ export function getCase(slug: string): CaseStudy | undefined {
 export function getCaseSlugs(): CaseSlug[] {
   return cases.map((c) => c.slug);
 }
+
+/** Cards on /cases that link out (no own page, never on home). */
+export type ExternalCase = {
+  id: string;
+  title: string;
+  badge: string;
+  /** Result line; `code` segments render as <code>. */
+  summary: ReadonlyArray<{ text: string; code?: boolean }>;
+  stack: string;
+  href: string;
+  linkLabel: string;
+  ariaLabel: string;
+  icon: "github";
+};
+
+export const externalCases: ExternalCase[] = [
+  {
+    id: "xv",
+    title: "xv",
+    badge: "CLI · MIT",
+    summary: [
+      {
+        text: "Baixa vídeo ou GIF de um link do X e já deixa o arquivo no clipboard. Com ",
+      },
+      { text: "-g", code: true },
+      { text: ", converte pra .gif." },
+    ],
+    stack: "Bash · PowerShell · yt-dlp · ffmpeg — macOS, Linux e Windows",
+    href: "https://github.com/ViniciusQuatrin/xv",
+    linkLabel: "Ver no GitHub",
+    ariaLabel: "Ver o repositório do xv no GitHub (abre em nova aba)",
+    icon: "github",
+  },
+];
