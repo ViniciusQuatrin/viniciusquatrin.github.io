@@ -98,7 +98,7 @@ export function mountGlobe(host, { desktop, reduce }) {
   }
 
   // State
-  let spin = 0.6; // idle rotation (desktop only)
+  const BASE_RY = 0.6; // fixed resting angle — no idle spin
   let tx = 0, ty = 0, mx = 0, my = 0; // mouse tilt (target/current)
   let running = true;
   let raf = 0;
@@ -117,16 +117,22 @@ export function mountGlobe(host, { desktop, reduce }) {
       request();
       return;
     }
-    const dt = last ? Math.min(0.1, (now - last) / 1000) : 0;
     last = now;
 
     const p = scrollProgress();
+    // Mouse tilt eases toward its target; snap when close so the loop ends.
+    let easing = false;
     if (desktop) {
-      spin += dt * 0.05;
-      mx += (tx - mx) * 0.06;
-      my += (ty - my) * 0.06;
+      mx += (tx - mx) * 0.15;
+      my += (ty - my) * 0.15;
+      if (Math.abs(tx - mx) < 0.01 && Math.abs(ty - my) < 0.01) {
+        mx = tx;
+        my = ty;
+      } else {
+        easing = true;
+      }
     }
-    const ry = spin + p * Math.PI * 1.1 + mx * 0.25;
+    const ry = BASE_RY + p * Math.PI * 1.1 + mx * 0.25;
     const rx = 0.35 + my * 0.18 - p * 0.25;
     const cy = Math.cos(ry), sy = Math.sin(ry), cx = Math.cos(rx), sx = Math.sin(rx);
     // R = Rx * Ry (column-major for GLSL)
@@ -151,8 +157,9 @@ export function mountGlobe(host, { desktop, reduce }) {
     gl.uniform1f(uPointSize, (desktop ? 3.6 : 3) * dpr);
     gl.drawArrays(gl.POINTS, 0, N);
 
-    // Desktop keeps a slow idle spin; mobile renders only on scroll.
-    if (desktop) request();
+    // Event-driven only: keep going while the tilt is still easing, then stop
+    // requesting frames (idle = zero rAF). Scroll/pointer restart it.
+    if (easing) request();
   }
 
   function request() {
@@ -185,6 +192,7 @@ export function mountGlobe(host, { desktop, reduce }) {
       (e) => {
         tx = (e.clientX / innerWidth - 0.5) * 2;
         ty = (e.clientY / innerHeight - 0.5) * 2;
+        request();
       },
       { passive: true },
     );

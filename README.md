@@ -27,7 +27,7 @@ git add -A && git commit -m "Update static export" && git push
 ### Efeitos v2 (`public/fx/`)
 
 - `main.js` — reveal de seções (só abaixo da dobra, uma vez, ~300ms), glitch ~150ms em H1/H2 (entrada/hover), tilt de cards (desktop), carrega o globo após `load` + idle.
-- `globe.js` + `geo.js` — globo WebGL de pontos/linhas neon (cyan/magenta), sem libs. Mobile: menos pontos, 30fps, só renderiza no scroll. Pausa com aba oculta.
+- `globe.js` + `geo.js` — globo WebGL de pontos/linhas neon (cyan/magenta), sem libs. Só renderiza em resposta a scroll (e mouse no desktop) — sem giro ocioso nem loop de rAF parado. Mobile: menos pontos, 30fps, só scroll. Pausa com aba oculta.
 - `globe.svg` — imagem estática do globo (sem JS, `prefers-reduced-motion`, device fraco ou WebGL indisponível). Regenerar: `node scripts/gen-globe-svg.mjs`.
 - Transição de página: View Transitions cross-document em CSS (~250ms, sem loader).
 - `prefers-reduced-motion: reduce` ⇒ nada se move (globo estático, neon estático).

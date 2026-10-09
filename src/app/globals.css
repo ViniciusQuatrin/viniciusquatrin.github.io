@@ -7,7 +7,7 @@
   --bg-elevated-solid: #0e1320;
   --fg: #e8edf6;
   --fg-muted: #aab4c6; /* ~9:1 on --bg */
-  --border: #26304a;
+  --border: #5a6683; /* 3.45:1 on --bg, 3.23:1 on card surface (WCAG 1.4.11) */
   --cyan: #22d3ee;
   --magenta: #e879f9;
   --accent: #5fe3f5; /* link color, ~12:1 on --bg */
