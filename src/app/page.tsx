@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { CtaGroup } from "@/components/CtaGroup";
+import { MoreProjects } from "@/components/MoreProjects";
 import { ProofCard } from "@/components/ProofCard";
 import { home } from "@/content/home";
 
@@ -12,7 +13,7 @@ export default function HomePage() {
   return (
     <>
       <section className="container hero" aria-labelledby="hero-name">
-        <h1 id="hero-name" className="hero__name">
+        <h1 id="hero-name" className="hero__name neon-title">
           {home.hero.name}
         </h1>
         <p className="hero__role">{home.hero.role}</p>
@@ -37,12 +38,16 @@ export default function HomePage() {
         </div>
       </section>
 
+      <MoreProjects />
+
       <section className="section" aria-labelledby="entrega-title">
-        <div className="container prose-width">
-          <h2 id="entrega-title" className="section__title">
-            {home.delivery.title}
-          </h2>
-          <p className="section__lead">{home.delivery.body}</p>
+        <div className="container">
+          <div className="prose-width delivery">
+            <h2 id="entrega-title" className="section__title">
+              {home.delivery.title}
+            </h2>
+            <p className="section__lead">{home.delivery.body}</p>
+          </div>
         </div>
       </section>
 

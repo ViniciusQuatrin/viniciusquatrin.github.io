@@ -29,6 +29,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className={`${sans.variable} h-full`}>
       <body className={`${sans.className} shell antialiased`}>
+        <div className="bg-globe" aria-hidden="true" />
         <SkipLink />
         <SiteHeader />
         <main id="conteudo" className="main">

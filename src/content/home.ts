@@ -33,6 +33,17 @@ export const home = {
     title: "Como entrega",
     body: "Trabalho em app que já está na rua: legado que precisa viver e código novo no mesmo ciclo. POS, integração e modernização sem drama — o que o time e o prazo pedem.",
   },
+  moreProjects: {
+    title: "Mais projetos",
+    item: {
+      title: "FOCO",
+      summary: "Timer de foco web e Android, guest-first.",
+      href: "/cases/foco",
+      linkLabel: "Ver case",
+    },
+    allHref: "/cases",
+    allLabel: "Ver todos os cases",
+  },
   cta: {
     primaryLinkedIn: "Falar no LinkedIn",
     primaryEmail: "Enviar e-mail",

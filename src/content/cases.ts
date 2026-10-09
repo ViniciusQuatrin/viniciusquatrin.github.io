@@ -12,9 +12,9 @@ export type CaseStudy = {
   listResult: string;
   role: string;
   problem: string;
+  /** Optional "O que entregou" block, rendered before "O que mudou". */
+  delivered?: string;
   changed: string;
-  /** Section heading for `changed`; defaults to "O que mudou". */
-  changedHeading?: string;
   stack: string;
   metaDescription: string;
   /** Live product URL shown as "Abrir app" / case CTA. */
@@ -92,19 +92,21 @@ export const cases: CaseStudy[] = [
   {
     slug: "foco",
     title: "FOCO",
-    eyebrow: "produto web de foco",
-    listType: "produto web · guest-first",
+    eyebrow: "produto web + Android",
+    listType: "produto web + Android · guest-first",
     listResult:
-      "Timer configurável (s/min/h), visual cyberpunk, Spotify opcional e histórico local sem conta obrigatória.",
-    role: "Side project web (Next.js) — timer Pomodoro configurável, guest primeiro.",
+      "Timer configurável (s/min/h), visual cyberpunk, Spotify opcional e histórico local. Web em Next.js, app em Kotlin Multiplatform.",
+    role: "Side project — timer Pomodoro configurável, guest primeiro, na web e no Android.",
     problem:
       "Precisava de um timer de foco que abrisse e funcionasse na hora, com durações flexíveis e presença visual forte — sem forçar conta pra usar.",
+    delivered:
+      "Web: modos foco / pausa curta / pausa longa, play/pause/reset, nome de sessão, tema, som e notificação ao fim do ciclo, histórico neste aparelho, unidades s/min/h, skin cyberpunk (glitch desliga com reduced-motion) e Spotify opcional com pausa ao fim do foco. Login opcional.",
     changed:
-      "App web com modos foco / pausa curta / pausa longa, play/pause/reset, nome de sessão, tema claro/escuro (dark default), som e notificação ao fim do ciclo, histórico neste aparelho. Na v2: unidades s/min/h, skin cyberpunk (néon/HUD/glitch; glitch desliga com reduced-motion) e Spotify opcional com pausa da música ao fim do foco. Login opcional. Sem sync, ads nem app nativo.",
-    changedHeading: "O que entregou",
-    stack: "Next.js (App Router) · TypeScript · Spotify OAuth · Cloudflare Pages",
+      "A v1 nasceu web e em segundos. A v2 trouxe unidades s/min/h, visual cyberpunk e Spotify. Depois o produto ganhou app Android em Kotlin Multiplatform, com as mesmas funções da web e ajustes nativos: navegação inferior, permissão de notificação e layout de tablet.",
+    stack:
+      "Next.js (App Router) · TypeScript · Kotlin Multiplatform · Spotify OAuth · Cloudflare Pages",
     metaDescription:
-      "FOCO — timer de foco web guest-first, com unidades s/min/h, visual cyberpunk e Spotify opcional.",
+      "FOCO — timer de foco web e Android, guest-first, com unidades s/min/h, visual cyberpunk e Spotify opcional.",
     externalUrl: "https://foco-bzo.pages.dev",
     externalLabel: "Abrir FOCO",
     prev: { href: "/cases/ecoos-mobile", label: "EcoOS Mobile" },

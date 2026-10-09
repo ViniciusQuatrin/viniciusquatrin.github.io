@@ -9,6 +9,8 @@ export function SiteHeader() {
   return (
     <header className="site-header">
       <div className="site-header__inner">
+        {/* Plain <a> on purpose: no client router (Next runtime JS is stripped). */}
+        {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
         <a href="/" className="site-header__brand">
           {site.name}
         </a>

@@ -37,10 +37,6 @@ export default async function CasePage({ params }: PageProps) {
     notFound();
   }
 
-  const changedHeading = item.changedHeading ?? "O que mudou";
-  const changedId =
-    item.changedHeading != null ? "entregou-title" : "mudou-title";
-
   return (
     <article className="container section">
       <header className="case-header">
@@ -54,8 +50,15 @@ export default async function CasePage({ params }: PageProps) {
         <p>{item.problem}</p>
       </section>
 
-      <section className="case-block" aria-labelledby={changedId}>
-        <h2 id={changedId}>{changedHeading}</h2>
+      {item.delivered ? (
+        <section className="case-block" aria-labelledby="entregou-title">
+          <h2 id="entregou-title">O que entregou</h2>
+          <p>{item.delivered}</p>
+        </section>
+      ) : null}
+
+      <section className="case-block" aria-labelledby="mudou-title">
+        <h2 id="mudou-title">O que mudou</h2>
         <p>{item.changed}</p>
       </section>
 

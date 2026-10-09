@@ -1,15 +1,22 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #f7f6f3;
-  --bg-elevated: #ffffff;
-  --fg: #1a1a1a;
-  --fg-muted: #4a4a4a;
-  --border: #d9d6cf;
-  --accent: #1d4ed8;
-  --accent-fg: #ffffff;
-  --accent-hover: #1e40af;
-  --focus: #1d4ed8;
+  color-scheme: dark;
+  --bg: #070a12;
+  --bg-elevated: rgba(14, 19, 32, 0.86);
+  --bg-elevated-solid: #0e1320;
+  --fg: #e8edf6;
+  --fg-muted: #aab4c6; /* ~9:1 on --bg */
+  --border: #26304a;
+  --cyan: #22d3ee;
+  --magenta: #e879f9;
+  --accent: #5fe3f5; /* link color, ~12:1 on --bg */
+  --accent-fg: #041018;
+  --accent-bg: #22d3ee; /* primary button bg, dark text ~10:1 */
+  --accent-hover: #67e8f9;
+  --focus: #f0abfc;
+  --glow-cyan: rgba(34, 211, 238, 0.35);
+  --glow-magenta: rgba(232, 121, 249, 0.3);
   --radius: 10px;
   --text-max: 42rem; /* ~672px */
   --content-max: 68.75rem; /* ~1100px */
@@ -219,7 +226,7 @@ a {
 }
 
 .btn--primary {
-  background: var(--accent);
+  background: var(--accent-bg);
   color: var(--accent-fg);
 }
 
@@ -462,7 +469,7 @@ a {
 /* Footer */
 .site-footer {
   border-top: 1px solid var(--border);
-  background: color-mix(in srgb, var(--bg) 70%, #e8e6e0);
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
   padding-block: var(--space-footer);
   margin-top: auto;
 }
@@ -530,5 +537,301 @@ a {
 @media (min-width: 768px) {
   .stack-sections > * + * {
     margin-top: var(--space-section-lg);
+  }
+}
+
+/* ===================== Portfolio v2 — effects layer ===================== */
+
+/* Background globe: static image by default (no-JS, reduced motion, weak
+   devices, WebGL failure). JS may add a canvas on top and fade it in. */
+.bg-globe {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: url("/fx/globe.svg");
+  background-repeat: no-repeat;
+  background-position: 85% 30%;
+  background-size: min(90vmin, 46rem);
+  opacity: 0.3;
+}
+
+@media (max-width: 767px) {
+  .bg-globe {
+    background-position: 50% 18%;
+    background-size: 120vmin;
+    opacity: 0.22;
+  }
+}
+
+.bg-globe canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.bg-globe.is-live {
+  background-image: none;
+  opacity: 0.4;
+}
+
+.bg-globe.is-live canvas {
+  opacity: 1;
+}
+
+body {
+  background: transparent;
+}
+
+html {
+  background: radial-gradient(
+      ellipse at 80% 0%,
+      rgba(232, 121, 249, 0.07),
+      transparent 55%
+    ),
+    radial-gradient(ellipse at 0% 100%, rgba(34, 211, 238, 0.06), transparent 50%),
+    var(--bg);
+  background-attachment: fixed;
+}
+
+.site-header {
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+}
+
+/* Low neon on headings (static; no motion) */
+main h1,
+main h2 {
+  text-shadow: 0 0 14px var(--glow-cyan);
+}
+
+.neon-title {
+  color: #f2fbff;
+  text-shadow:
+    0 0 10px rgba(34, 211, 238, 0.45),
+    0 0 28px rgba(232, 121, 249, 0.22);
+}
+
+/* Glitch: ~150ms, added by JS only on enter/hover. Never loops. */
+@keyframes fx-glitch {
+  0% {
+    transform: translate(0);
+    text-shadow: 0 0 14px var(--glow-cyan);
+  }
+  25% {
+    transform: translate(-2px, 1px) skewX(-4deg);
+    text-shadow: 2px 0 var(--magenta), -2px 0 var(--cyan);
+  }
+  50% {
+    transform: translate(2px, -1px);
+    text-shadow: -2px 0 var(--magenta), 2px 0 var(--cyan);
+    clip-path: inset(10% 0 30% 0);
+  }
+  75% {
+    transform: translate(-1px, 0) skewX(3deg);
+    text-shadow: 1px 0 var(--magenta), -1px 0 var(--cyan);
+    clip-path: none;
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+.fx-glitch {
+  animation: fx-glitch 150ms steps(4, end) 1;
+}
+
+/* Cards: whole card is clickable via the title link; keyboard reaches it
+   (Tab → Enter). Neon border on hover/focus. */
+.fx-card {
+  position: relative;
+  backdrop-filter: blur(6px);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+  transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  will-change: auto;
+}
+
+.card-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.card-link:focus-visible {
+  outline: none;
+}
+
+.card-link:focus-visible::after {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+
+.card-sublink {
+  position: relative;
+  z-index: 1;
+}
+
+.fx-card:hover,
+.fx-card:focus-within {
+  border-color: color-mix(in srgb, var(--cyan) 70%, var(--border));
+  box-shadow:
+    0 0 0 1px rgba(34, 211, 238, 0.25),
+    0 0 22px rgba(34, 211, 238, 0.18),
+    0 0 40px rgba(232, 121, 249, 0.1);
+}
+
+.fx-card.is-tilting {
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.08s linear;
+}
+
+/* Mais projetos strip */
+.more-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.5rem;
+  max-width: var(--text-max);
+}
+
+.more-card {
+  flex: 1 1 18rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--magenta);
+  border-radius: var(--radius);
+  padding: 0.9rem 1.2rem;
+}
+
+.more-card__title {
+  margin: 0 0 0.25rem;
+  font-size: 1.1rem;
+  font-weight: 650;
+}
+
+.more-card__title a {
+  text-decoration: none;
+}
+
+.more-card__summary {
+  margin: 0 0 0.25rem;
+  color: var(--fg-muted);
+}
+
+/* Como entrega: thin neon rule that draws in when the section enters */
+.delivery {
+  position: relative;
+  padding-left: 1.1rem;
+}
+
+.delivery::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.3rem;
+  bottom: 0.3rem;
+  width: 2px;
+  background: linear-gradient(var(--cyan), var(--magenta));
+  box-shadow: 0 0 8px var(--glow-cyan);
+  transform-origin: top;
+}
+
+/* Section reveal — JS only marks sections that start below the fold, so
+   above-the-fold content (hero + proofs) is never hidden. */
+.fx-pending {
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+.fx-pending .delivery::before {
+  transform: scaleY(0);
+}
+
+.fx-revealed {
+  transition:
+    opacity 300ms ease-out,
+    transform 300ms ease-out;
+}
+
+.fx-revealed .delivery::before {
+  transition: transform 500ms ease-out 120ms;
+}
+
+/* Page transition (cross-document View Transitions, no JS, no loader) */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+
+  ::view-transition-old(root) {
+    animation: fx-page-out 120ms ease-in both;
+  }
+
+  ::view-transition-new(root) {
+    animation: fx-page-in 250ms ease-out both;
+  }
+}
+
+@keyframes fx-page-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fx-page-in {
+  0% {
+    opacity: 0;
+    transform: translateX(-3px);
+    filter: hue-rotate(40deg);
+  }
+  40% {
+    transform: translateX(2px);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+/* Reduced motion: nothing moves. Static globe image, static neon. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .fx-card,
+  .fx-card.is-tilting {
+    transform: none !important;
+    transition: none;
+  }
+
+  .fx-glitch {
+    animation: none;
+  }
+
+  .fx-pending {
+    opacity: 1;
+    transform: none;
+  }
+
+  .fx-pending .delivery::before {
+    transform: none;
+  }
+
+  .bg-globe canvas {
+    display: none;
+  }
+
+  .bg-globe.is-live {
+    background-image: url("/fx/globe.svg");
   }
 }

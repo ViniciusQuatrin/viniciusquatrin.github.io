@@ -12,12 +12,14 @@ function withTrailingSlash(href: string) {
 export function ProofCard({ title, summary, href }: ProofCardProps) {
   const link = withTrailingSlash(href);
   return (
-    <article className="proof-card">
+    <article className="proof-card fx-card">
       <h3 className="proof-card__title">
-        <a href={link}>{title}</a>
+        <a href={link} className="card-link">
+          {title}
+        </a>
       </h3>
       <p className="proof-card__summary">{summary}</p>
-      <a href={link} className="proof-card__link">
+      <a href={link} className="proof-card__link card-sublink">
         Ver case
         <span aria-hidden="true"> →</span>
       </a>
