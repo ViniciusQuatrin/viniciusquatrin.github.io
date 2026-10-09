@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import { CaseCard } from "@/components/CaseCard";
-import { ExternalCaseCard } from "@/components/ExternalCaseCard";
-import { cases, casesIntro, externalCases } from "@/content/cases";
+import { CaseList } from "@/components/CaseList";
+import { GlitchHeading } from "@/components/GlitchHeading";
+import { casesIntro } from "@/content/cases";
 
 export const metadata: Metadata = {
   title: "Cases",
@@ -12,18 +12,11 @@ export default function CasesPage() {
   return (
     <div className="container section">
       <header className="page-intro">
-        <h1>{casesIntro.title}</h1>
+        <GlitchHeading level={1}>{casesIntro.title}</GlitchHeading>
         <p>{casesIntro.body}</p>
       </header>
 
-      <div className="case-grid">
-        {cases.map((item) => (
-          <CaseCard key={item.slug} item={item} />
-        ))}
-        {externalCases.map((item) => (
-          <ExternalCaseCard key={item.id} item={item} />
-        ))}
-      </div>
+      <CaseList />
     </div>
   );
 }

@@ -313,7 +313,6 @@ a {
   max-width: var(--text-max);
 }
 
-.proof-card,
 .case-card {
   background: var(--bg-elevated);
   border: 1px solid var(--border);
@@ -321,7 +320,6 @@ a {
   padding: 1.25rem 1.35rem;
 }
 
-.proof-card__title,
 .case-card__title {
   margin: 0 0 0.5rem;
   font-size: 1.2rem;
@@ -329,23 +327,19 @@ a {
   letter-spacing: -0.02em;
 }
 
-.proof-card__title a,
 .case-card__title a {
   text-decoration: none;
 }
 
-.proof-card__title a:hover,
 .case-card__title a:hover {
   color: var(--accent);
 }
 
-.proof-card__summary,
 .case-card__result {
   margin: 0 0 0.85rem;
   color: var(--fg-muted);
 }
 
-.proof-card__link,
 .case-card__link {
   display: inline-flex;
   align-items: center;
@@ -355,7 +349,6 @@ a {
   text-decoration: none;
 }
 
-.proof-card__link:hover,
 .case-card__link:hover {
   text-decoration: underline;
 }
@@ -367,11 +360,11 @@ a {
   align-items: center;
 }
 
-.case-card__link--external {
+.case-card__link--secondary {
   color: var(--fg-muted);
 }
 
-.case-card__link--external:hover {
+.case-card__link--secondary:hover {
   color: var(--accent);
 }
 
@@ -602,8 +595,7 @@ html {
 }
 
 /* Low neon on headings (static; no motion) */
-main h1,
-main h2 {
+.fx-heading {
   text-shadow: 0 0 14px var(--glow-cyan);
 }
 
@@ -702,28 +694,19 @@ main h2 {
   max-width: var(--text-max);
 }
 
-.more-card {
+.case-card--compact {
   flex: 1 1 18rem;
-  background: var(--bg-elevated);
-  border: 1px solid var(--border);
   border-left: 3px solid var(--magenta);
-  border-radius: var(--radius);
   padding: 0.9rem 1.2rem;
 }
 
-.more-card__title {
-  margin: 0 0 0.25rem;
+.case-card--compact .case-card__title {
   font-size: 1.1rem;
-  font-weight: 650;
+  margin-bottom: 0.25rem;
 }
 
-.more-card__title a {
-  text-decoration: none;
-}
-
-.more-card__summary {
-  margin: 0 0 0.25rem;
-  color: var(--fg-muted);
+.case-card--compact .case-card__result {
+  margin-bottom: 0.25rem;
 }
 
 /* Como entrega: thin neon rule that draws in when the section enters */
@@ -836,8 +819,8 @@ main h2 {
   }
 }
 
-/* External case card variant (e.g. xv → GitHub) */
-.ext-card__badge {
+/* Case card extras: badge pill, meta line, link icon */
+.case-card__badge {
   display: inline-block;
   padding: 0.1rem 0.55rem;
   border: 1px solid var(--border);
@@ -847,17 +830,17 @@ main h2 {
   letter-spacing: 0.02em;
 }
 
-.ext-card__stack {
+.case-card__meta {
   margin: 0 0 0.85rem;
   color: var(--fg-muted);
   font-size: 0.9rem;
 }
 
-.ext-card__link {
+.case-card__link {
   gap: 0.4rem;
 }
 
-.ext-card__icon {
+.case-card__icon {
   flex: none;
 }
 

@@ -1,9 +1,5 @@
 import { site } from "@/content/site";
-
-function withTrailingSlash(href: string) {
-  if (href === "/") return href;
-  return href.endsWith("/") ? href : `${href}/`;
-}
+import { withTrailingSlash } from "@/lib/href";
 
 export function SiteFooter() {
   return (

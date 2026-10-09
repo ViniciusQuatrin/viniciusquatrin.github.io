@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { CtaGroup } from "@/components/CtaGroup";
 import { MoreProjects } from "@/components/MoreProjects";
-import { ProofCard } from "@/components/ProofCard";
+import { CaseCard } from "@/components/CaseCard";
+import { GlitchHeading } from "@/components/GlitchHeading";
 import { home } from "@/content/home";
 
 export const metadata: Metadata = {
@@ -13,25 +14,27 @@ export default function HomePage() {
   return (
     <>
       <section className="container hero" aria-labelledby="hero-name">
-        <h1 id="hero-name" className="hero__name neon-title">
+        <GlitchHeading level={1} id="hero-name" className="hero__name" neon>
           {home.hero.name}
-        </h1>
+        </GlitchHeading>
         <p className="hero__role">{home.hero.role}</p>
         <p className="hero__promise">{home.hero.promise}</p>
       </section>
 
       <section className="section" aria-labelledby="provas-title">
         <div className="container">
-          <h2 id="provas-title" className="section__title">
+          <GlitchHeading level={2} id="provas-title" className="section__title">
             Provas
-          </h2>
+          </GlitchHeading>
           <div className="proof-stack">
             {home.proofs.map((proof) => (
-              <ProofCard
+              <CaseCard
                 key={proof.href}
+                id={`proof-${proof.href.split("/").pop()}`}
                 title={proof.title}
+                headingLevel={3}
                 summary={proof.summary}
-                href={proof.href}
+                link={{ href: proof.href, label: "Ver case" }}
               />
             ))}
           </div>
@@ -43,9 +46,13 @@ export default function HomePage() {
       <section className="section" aria-labelledby="entrega-title">
         <div className="container">
           <div className="prose-width delivery">
-            <h2 id="entrega-title" className="section__title">
+            <GlitchHeading
+              level={2}
+              id="entrega-title"
+              className="section__title"
+            >
               {home.delivery.title}
-            </h2>
+            </GlitchHeading>
             <p className="section__lead">{home.delivery.body}</p>
           </div>
         </div>

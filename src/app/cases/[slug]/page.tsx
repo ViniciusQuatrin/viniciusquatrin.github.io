@@ -1,16 +1,14 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { CtaGroup } from "@/components/CtaGroup";
+import { GlitchHeading } from "@/components/GlitchHeading";
 import { getCase, getCaseSlugs } from "@/content/cases";
+import { withTrailingSlash } from "@/lib/href";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
 };
 
-function withTrailingSlash(href: string) {
-  if (href === "/") return href;
-  return href.endsWith("/") ? href : `${href}/`;
-}
 
 export function generateStaticParams() {
   return getCaseSlugs().map((slug) => ({ slug }));
@@ -41,29 +39,39 @@ export default async function CasePage({ params }: PageProps) {
     <article className="container section">
       <header className="case-header">
         <p className="case-header__eyebrow">{item.eyebrow}</p>
-        <h1 className="case-header__title">{item.title}</h1>
+        <GlitchHeading level={1} className="case-header__title">
+          {item.title}
+        </GlitchHeading>
         <p className="case-header__role">{item.role}</p>
       </header>
 
       <section className="case-block" aria-labelledby="problema-title">
-        <h2 id="problema-title">Problema</h2>
+        <GlitchHeading level={2} id="problema-title">
+          Problema
+        </GlitchHeading>
         <p>{item.problem}</p>
       </section>
 
       {item.delivered ? (
         <section className="case-block" aria-labelledby="entregou-title">
-          <h2 id="entregou-title">O que entregou</h2>
+          <GlitchHeading level={2} id="entregou-title">
+          O que entregou
+        </GlitchHeading>
           <p>{item.delivered}</p>
         </section>
       ) : null}
 
       <section className="case-block" aria-labelledby="mudou-title">
-        <h2 id="mudou-title">O que mudou</h2>
+        <GlitchHeading level={2} id="mudou-title">
+          O que mudou
+        </GlitchHeading>
         <p>{item.changed}</p>
       </section>
 
       <section className="case-block" aria-labelledby="stack-title">
-        <h2 id="stack-title">Stack</h2>
+        <GlitchHeading level={2} id="stack-title">
+          Stack
+        </GlitchHeading>
         <p>{item.stack}</p>
       </section>
 

@@ -1,4 +1,5 @@
 import { site } from "@/content/site";
+import { withTrailingSlash } from "@/lib/href";
 
 type CtaGroupProps = {
   linkedInLabel?: string;
@@ -10,12 +11,6 @@ type CtaGroupProps = {
   externalLabel?: string;
   compact?: boolean;
 };
-
-function withTrailingSlash(href: string) {
-  if (href.startsWith("http") || href.startsWith("mailto:")) return href;
-  if (href === "/") return href;
-  return href.endsWith("/") ? href : `${href}/`;
-}
 
 export function CtaGroup({
   linkedInLabel = site.linkedIn.label,

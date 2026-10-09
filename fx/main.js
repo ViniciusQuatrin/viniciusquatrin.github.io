@@ -15,16 +15,24 @@
     el.classList.add("fx-glitch");
     setTimeout(() => el.classList.remove("fx-glitch"), 170);
   }
-  const headings = document.querySelectorAll("main h1, main h2");
-  headings.forEach((h) => {
+  // Hook: [data-fx-glitch] (GlitchHeading). Inside a [data-fx-card], the whole
+  // card (hover or keyboard focus) triggers its title — same for every card.
+  document.querySelectorAll("[data-fx-glitch]").forEach((h) => {
+    if (h.closest("[data-fx-card]")) return;
     h.addEventListener("pointerenter", () => glitch(h));
   });
-  const h1 = document.querySelector("main h1");
+  document.querySelectorAll("[data-fx-card]").forEach((card) => {
+    const title = card.querySelector("[data-fx-glitch]");
+    if (!title) return;
+    card.addEventListener("pointerenter", () => glitch(title));
+    card.addEventListener("focusin", () => glitch(title));
+  });
+  const h1 = document.querySelector("main h1[data-fx-glitch]");
   if (h1) requestAnimationFrame(() => glitch(h1));
 
   /* ---------- Section reveal (fade + short slide, once) ---------- */
   const sections = document.querySelectorAll(
-    "main > section, main > article > section, main > div > .stack-sections > section, main .case-grid > .fx-card",
+    "main > section, main > article > section, main > div > .stack-sections > section, main .case-grid > [data-fx-card]",
   );
   if ("IntersectionObserver" in window) {
     const vh = window.innerHeight;
@@ -36,8 +44,8 @@
           io.unobserve(el);
           el.classList.add("fx-revealed");
           el.classList.remove("fx-pending");
-          const h = el.querySelector("h2");
-          if (h) setTimeout(() => glitch(h), 120);
+          // Glitch on enter: the block's heading(s) and any card titles in it.
+          el.querySelectorAll("[data-fx-glitch]").forEach((h) => setTimeout(() => glitch(h), 120));
           el.addEventListener(
             "transitionend",
             () => el.classList.remove("fx-revealed"),
@@ -58,7 +66,7 @@
   /* ---------- Card tilt (desktop only, a few degrees) ---------- */
   if (desktop) {
     const MAX = 4;
-    document.querySelectorAll(".fx-card").forEach((card) => {
+    document.querySelectorAll("[data-fx-card]").forEach((card) => {
       let raf = 0;
       card.addEventListener("pointermove", (ev) => {
         if (reduce.matches) return;
